@@ -1,0 +1,45 @@
+pipeline {
+    agent any
+    stages {
+        stage('Clone') {
+            steps {
+                git 'pipeline {
+    agent any
+    stages {
+        stage('Clone') {
+            steps {
+                git https://github.com/Midhlaj730/devops.git''
+            }
+        }
+        stage('Build Image') {
+            steps {
+                sh 'docker build -t devops-image .'
+            }
+        }
+        stage('Run Container') {
+            steps {
+                sh '''
+                docker rm -f devops-container || true
+                docker run -d -p 80:80 --name devops-container devops-image
+                '''
+            }
+        }
+    }
+}
+            }
+        }
+        stage('Build Image') {
+            steps {
+                sh 'docker build -t devops-image .'
+            }
+        }
+        stage('Run Container') {
+            steps {
+                sh '''
+                docker rm -f devops-container || true
+                docker run -d -p 80:80 --name devops-container devops-image
+                '''
+            }
+        }
+    }
+}
